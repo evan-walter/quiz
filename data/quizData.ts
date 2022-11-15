@@ -196,7 +196,7 @@ export const questions: any[] = [
     ],
   },
   {
-    questionSelector: 'exextracurricularstracu',
+    questionSelector: 'exextracurriculars',
     questionText: createElement(
       'p',
       { className: 'text-2xl font-bold' },
@@ -223,8 +223,8 @@ export const questions: any[] = [
         singleAns: false,
       },
       {
-        selector: 'band',
-        answerText: 'Band or Orchestra',
+        selector: 'instrument',
+        answerText: 'Band and/or Orchestra',
         imgSrc: '',
         singleAns: false,
       },

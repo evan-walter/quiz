@@ -28,24 +28,25 @@ export default function Questions({
 
   // Show Next Btn
   const handleShowNextBtn = () => {
-    if (
-      questions[currentQuestion - 1].questionSelector === 'schoolSubjects'
-    ) {
-      whichSchoolSubjects.firstIssue === true ||
-      whichSchoolSubjects.secondIssue === true ||
-      whichSchoolSubjects.thirdIssue === true ||
-      whichSchoolSubjects.fourthIssue === true ||
-      whichSchoolSubjects.fifthIssue === true
+    if (questions[currentQuestion - 1].questionSelector === 'schoolSubjects') {
+      whichSchoolSubjects.english === true ||
+      whichSchoolSubjects.history === true ||
+      whichSchoolSubjects.math === true ||
+      whichSchoolSubjects.science === true ||
+      whichSchoolSubjects.recess === true
         ? setShowNextBtn(true)
         : setShowNextBtn(false)
     }
 
-    if (questions[currentQuestion - 1].questionSelector === 'extracurriculars') {
-      whichExtracurriculars.firstFollowing === true ||
-      whichExtracurriculars.secondFollowing === true ||
-      whichExtracurriculars.thirdFollowing === true ||
-      whichExtracurriculars.fourthFollowing === true ||
-      whichExtracurriculars.fifthFollowing === true
+    if (
+      questions[currentQuestion - 1].questionSelector === 'extracurriculars'
+    ) {
+      whichExtracurriculars.debate === true ||
+      whichExtracurriculars.chess === true ||
+      whichExtracurriculars.instrument === true ||
+      whichExtracurriculars.art === true ||
+      whichExtracurriculars.act === true ||
+      whichExtracurriculars.gym === true
         ? setShowNextBtn(true)
         : setShowNextBtn(false)
     }
@@ -53,11 +54,7 @@ export default function Questions({
 
   useEffect(() => {
     handleShowNextBtn()
-  }, [
-    whichSchoolSubjects,
-    whichExtracurriculars,
-    currentQuestion,
-  ])
+  }, [whichSchoolSubjects, whichExtracurriculars, currentQuestion])
   // END Show Next Btn
 
   const questionItems = questions[currentQuestion - 1].answerOptions.map(
@@ -95,7 +92,7 @@ export default function Questions({
               />
             </div>
             <button
-              className='bg-blue-500 mt-5 w-full rounded-xl px-4 py-3 text-sm font-bold text-white shadow-lg transition hover:scale-105 focus:outline-gray-500'
+              className='mt-5 w-full rounded-xl bg-blue-500 px-4 py-3 text-sm font-bold text-white shadow-lg transition hover:scale-105 focus:outline-gray-500'
               value={answerOption.selector}
               onClick={
                 answerOption.singleAns
@@ -119,7 +116,7 @@ export default function Questions({
             <p className='text-center'>
               Question: {currentQuestion}/{questions.length}
             </p>
-            <div className='border-blue-500 z-10 mt-2 w-full overflow-hidden rounded-full border bg-gray-100'>
+            <div className='z-10 mt-2 w-full overflow-hidden rounded-full border border-blue-500 bg-gray-100'>
               <div
                 className='bg-blue-500-400 z-20 h-full rounded-full bg-blue-500'
                 style={{

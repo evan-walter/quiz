@@ -22,19 +22,20 @@ export default function Quiz() {
   const singleAnswersSelected = useRef<any[]>([])
   const [whichSchoolSubjects, setWhichSchoolSubjects] =
     useState({
-      firstIssue: false,
-      secondIssue: false,
-      thirdIssue: false,
-      fourthIssue: false,
-      fifthIssue: false,
+      english: false,
+      history: false,
+      math: false,
+      science: false,
+      recess: false,
     })
   const [whichExtracurriculars, setWhichExtracurriculars] =
     useState({
-      firstFollowing: false,
-      secondFollowing: false,
-      thirdFollowing: false,
-      fourthFollowing: false,
-      fifthFollowing: false,
+      debate: false,
+      chess: false,
+      instrument: false,
+      art: false,
+      act: false,
+      gym: false,
     })
   const [progressBarWidth, setProgressBarWidth] = useState(0)
   // Results
@@ -92,83 +93,91 @@ export default function Quiz() {
   }
 
   const handleMultipleAns = (e: any) => {
-    if (e.target.value === 'firstIssue') {
+    if (e.target.value === 'english') {
       setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          firstIssue: !whichSchoolSubjects.firstIssue,
+          english: !whichSchoolSubjects.english,
         }
       })
     }
-    if (e.target.value === 'secondIssue') {
+    if (e.target.value === 'history') {
       setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          secondIssue: !whichSchoolSubjects.secondIssue,
+          history: !whichSchoolSubjects.history,
         }
       })
     }
-    if (e.target.value === 'thirdIssue') {
+    if (e.target.value === 'math') {
       setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          thirdIssue: !whichSchoolSubjects.thirdIssue,
+          math: !whichSchoolSubjects.math,
         }
       })
     }
-    if (e.target.value === 'fourthIssue') {
+    if (e.target.value === 'science') {
       setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          fourthIssue: !whichSchoolSubjects.fourthIssue,
+          science: !whichSchoolSubjects.science,
         }
       })
     }
-    if (e.target.value === 'fifthIssue') {
+    if (e.target.value === 'recess') {
       setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          fifthIssue: !whichSchoolSubjects.fifthIssue,
+          recess: !whichSchoolSubjects.recess,
         }
       })
     }
-    if (e.target.value === 'firstFollowing') {
+    if (e.target.value === 'debate') {
       setWhichExtracurriculars((s) => {
         return {
           ...s,
-          firstFollowing: !whichExtracurriculars.firstFollowing,
+          debate: !whichExtracurriculars.debate,
         }
       })
     }
-    if (e.target.value === 'secondFollowing') {
+    if (e.target.value === 'chess') {
       setWhichExtracurriculars((s) => {
         return {
           ...s,
-          secondFollowing: !whichExtracurriculars.secondFollowing,
+          chess: !whichExtracurriculars.chess,
         }
       })
     }
-    if (e.target.value === 'thirdFollowing') {
+    if (e.target.value === 'instrument') {
       setWhichExtracurriculars((s) => {
         return {
           ...s,
-          thirdFollowing: !whichExtracurriculars.thirdFollowing,
+          instrument: !whichExtracurriculars.instrument,
         }
       })
     }
-    if (e.target.value === 'fourthFollowing') {
+    if (e.target.value === 'art') {
       setWhichExtracurriculars((s) => {
         return {
           ...s,
-          fourthFollowing: !whichExtracurriculars.fourthFollowing,
+          art: !whichExtracurriculars.art,
         }
       })
     }
-    if (e.target.value === 'fifthFollowing') {
+    if (e.target.value === 'act') {
       setWhichExtracurriculars((s) => {
         return {
           ...s,
-          fifthFollowing: !whichExtracurriculars.fifthFollowing,
+          act: !whichExtracurriculars.act,
+        }
+      })
+    }
+    if (e.target.value === 'gym') {
+      setWhichExtracurriculars((s) => {
+        return {
+          ...s,
+          gym: !whichExtracurriculars.gym,
         }
       })
     }
@@ -322,7 +331,7 @@ export default function Quiz() {
     // END Single Answers
 
     // Multiple Answers
-    if (whichSchoolSubjects.firstIssue) {
+    if (whichSchoolSubjects.english) {
       setDefaultScores((s) => [
         { selector: 'cp', score: s[0].score + 3 },
         { selector: 'ja', score: s[1].score + 3 },
@@ -332,8 +341,8 @@ export default function Quiz() {
       ])
     }
     if (
-      whichSchoolSubjects.secondIssue ||
-      whichSchoolSubjects.thirdIssue
+      whichSchoolSubjects.history ||
+      whichSchoolSubjects.math
     ) {
       addLisp.current = true
       setDefaultScores((s) => [
@@ -344,7 +353,7 @@ export default function Quiz() {
         { selector: 'js', score: s[4].score },
       ])
     }
-    if (whichSchoolSubjects.fourthIssue) {
+    if (whichSchoolSubjects.science) {
       setDefaultScores((s) => [
         { selector: 'cp', score: s[0].score },
         { selector: 'ja', score: s[1].score + 3 },
@@ -353,7 +362,7 @@ export default function Quiz() {
         { selector: 'js', score: s[4].score },
       ])
     }
-    if (whichSchoolSubjects.fifthIssue) {
+    if (whichSchoolSubjects.recess) {
       setDefaultScores((s) => [
         { selector: 'cp', score: s[0].score },
         { selector: 'ja', score: s[1].score + 3 },
@@ -363,14 +372,14 @@ export default function Quiz() {
       ])
     }
     if (
-      whichExtracurriculars.firstFollowing ||
-      whichExtracurriculars.secondFollowing ||
-      whichExtracurriculars.thirdFollowing ||
-      whichExtracurriculars.fourthFollowing
+      whichExtracurriculars.debate ||
+      whichExtracurriculars.chess ||
+      whichExtracurriculars.instrument ||
+      whichExtracurriculars.art
     ) {
       addLisp.current = true
     }
-    if (whichExtracurriculars.fifthFollowing) {
+    if (whichExtracurriculars.act) {
       addLisp.current = true
     }
   }
