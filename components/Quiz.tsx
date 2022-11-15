@@ -20,7 +20,7 @@ export default function Quiz() {
   // Questions Logic
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const singleAnswersSelected = useRef<any[]>([])
-  const [whichIssuesChallengesSelected, setWhichIssuesChallengesSelected] =
+  const [whichSchoolSubjects, setWhichSchoolSubjects] =
     useState({
       firstIssue: false,
       secondIssue: false,
@@ -28,7 +28,7 @@ export default function Quiz() {
       fourthIssue: false,
       fifthIssue: false,
     })
-  const [whichFollowingApplySelected, setWhichFollowingApplySelected] =
+  const [whichExtracurriculars, setWhichExtracurriculars] =
     useState({
       firstFollowing: false,
       secondFollowing: false,
@@ -39,16 +39,16 @@ export default function Quiz() {
   const [progressBarWidth, setProgressBarWidth] = useState(0)
   // Results
   const [defaultScores, setDefaultScores] = useState([
-    { selector: 'first', score: 0 },
-    { selector: 'second', score: 0 },
-    { selector: 'third', score: 0 },
-    { selector: 'fourth', score: 0 },
-    { selector: 'fifth', score: 0 },
+    { selector: 'cp', score: 0 },
+    { selector: 'ja', score: 0 },
+    { selector: 'py', score: 0 },
+    { selector: 'rb', score: 0 },
+    { selector: 'js', score: 0 },
   ])
-  const includeFirstExample = useRef(false)
-  const includeSecondExample = useRef(false)
-  const includeThirdExample = useRef(false)
-  const includeFourthExample = useRef(false)
+  const includePython = useRef(false)
+  const includeRuby = useRef(false)
+  const addLisp = useRef(false)
+  const addRust = useRef(false)
   const resultsCalculated = useRef(false)
   //// END useState and useRef Declarations
 
@@ -93,82 +93,82 @@ export default function Quiz() {
 
   const handleMultipleAns = (e: any) => {
     if (e.target.value === 'firstIssue') {
-      setWhichIssuesChallengesSelected((s) => {
+      setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          firstIssue: !whichIssuesChallengesSelected.firstIssue,
+          firstIssue: !whichSchoolSubjects.firstIssue,
         }
       })
     }
     if (e.target.value === 'secondIssue') {
-      setWhichIssuesChallengesSelected((s) => {
+      setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          secondIssue: !whichIssuesChallengesSelected.secondIssue,
+          secondIssue: !whichSchoolSubjects.secondIssue,
         }
       })
     }
     if (e.target.value === 'thirdIssue') {
-      setWhichIssuesChallengesSelected((s) => {
+      setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          thirdIssue: !whichIssuesChallengesSelected.thirdIssue,
+          thirdIssue: !whichSchoolSubjects.thirdIssue,
         }
       })
     }
     if (e.target.value === 'fourthIssue') {
-      setWhichIssuesChallengesSelected((s) => {
+      setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          fourthIssue: !whichIssuesChallengesSelected.fourthIssue,
+          fourthIssue: !whichSchoolSubjects.fourthIssue,
         }
       })
     }
     if (e.target.value === 'fifthIssue') {
-      setWhichIssuesChallengesSelected((s) => {
+      setWhichSchoolSubjects((s) => {
         return {
           ...s,
-          fifthIssue: !whichIssuesChallengesSelected.fifthIssue,
+          fifthIssue: !whichSchoolSubjects.fifthIssue,
         }
       })
     }
     if (e.target.value === 'firstFollowing') {
-      setWhichFollowingApplySelected((s) => {
+      setWhichExtracurriculars((s) => {
         return {
           ...s,
-          firstFollowing: !whichFollowingApplySelected.firstFollowing,
+          firstFollowing: !whichExtracurriculars.firstFollowing,
         }
       })
     }
     if (e.target.value === 'secondFollowing') {
-      setWhichFollowingApplySelected((s) => {
+      setWhichExtracurriculars((s) => {
         return {
           ...s,
-          secondFollowing: !whichFollowingApplySelected.secondFollowing,
+          secondFollowing: !whichExtracurriculars.secondFollowing,
         }
       })
     }
     if (e.target.value === 'thirdFollowing') {
-      setWhichFollowingApplySelected((s) => {
+      setWhichExtracurriculars((s) => {
         return {
           ...s,
-          thirdFollowing: !whichFollowingApplySelected.thirdFollowing,
+          thirdFollowing: !whichExtracurriculars.thirdFollowing,
         }
       })
     }
     if (e.target.value === 'fourthFollowing') {
-      setWhichFollowingApplySelected((s) => {
+      setWhichExtracurriculars((s) => {
         return {
           ...s,
-          fourthFollowing: !whichFollowingApplySelected.fourthFollowing,
+          fourthFollowing: !whichExtracurriculars.fourthFollowing,
         }
       })
     }
     if (e.target.value === 'fifthFollowing') {
-      setWhichFollowingApplySelected((s) => {
+      setWhichExtracurriculars((s) => {
         return {
           ...s,
-          fifthFollowing: !whichFollowingApplySelected.fifthFollowing,
+          fifthFollowing: !whichExtracurriculars.fifthFollowing,
         }
       })
     }
@@ -181,197 +181,197 @@ export default function Quiz() {
     switch (singleAnswersSelected.current[0].selector) {
       case 'cold' || 'unsure':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score + 3 },
-          { selector: 'second', score: s[1].score + 3 },
-          { selector: 'third', score: s[2].score + 3 },
-          { selector: 'fourth', score: s[3].score + 3 },
-          { selector: 'fifth', score: s[4].score + 3 },
+          { selector: 'cp', score: s[0].score + 3 },
+          { selector: 'ja', score: s[1].score + 3 },
+          { selector: 'py', score: s[2].score + 3 },
+          { selector: 'rb', score: s[3].score + 3 },
+          { selector: 'js', score: s[4].score + 3 },
         ])
       case 'hot':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score },
-          { selector: 'second', score: s[1].score + 7 },
-          { selector: 'third', score: s[2].score + 9 },
-          { selector: 'fourth', score: s[3].score + 7 },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score },
+          { selector: 'ja', score: s[1].score + 7 },
+          { selector: 'py', score: s[2].score + 9 },
+          { selector: 'rb', score: s[3].score + 7 },
+          { selector: 'js', score: s[4].score },
         ])
     }
     switch (singleAnswersSelected.current[1].selector) {
       case 'soft':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score },
-          { selector: 'second', score: s[1].score },
-          { selector: 'third', score: s[2].score + 6 },
-          { selector: 'fourth', score: s[3].score + 6 },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score },
+          { selector: 'ja', score: s[1].score },
+          { selector: 'py', score: s[2].score + 6 },
+          { selector: 'rb', score: s[3].score + 6 },
+          { selector: 'js', score: s[4].score },
         ])
       case 'middle':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score },
-          { selector: 'second', score: s[1].score + 6 },
-          { selector: 'third', score: s[2].score + 6 },
-          { selector: 'fourth', score: s[3].score },
-          { selector: 'fifth', score: s[4].score + 4 },
+          { selector: 'cp', score: s[0].score },
+          { selector: 'ja', score: s[1].score + 6 },
+          { selector: 'py', score: s[2].score + 6 },
+          { selector: 'rb', score: s[3].score },
+          { selector: 'js', score: s[4].score + 4 },
         ])
       case 'firm':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score + 6 },
-          { selector: 'second', score: s[1].score },
-          { selector: 'third', score: s[2].score },
-          { selector: 'fourth', score: s[3].score },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score + 6 },
+          { selector: 'ja', score: s[1].score },
+          { selector: 'py', score: s[2].score },
+          { selector: 'rb', score: s[3].score },
+          { selector: 'js', score: s[4].score },
         ])
     }
     switch (singleAnswersSelected.current[2].selector) {
       case 'memoryFoam':
-        includeFirstExample.current = true
+        includePython.current = true
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score + 7 },
-          { selector: 'second', score: s[1].score },
-          { selector: 'third', score: s[2].score + 7 },
-          { selector: 'fourth', score: s[3].score },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score + 7 },
+          { selector: 'ja', score: s[1].score },
+          { selector: 'py', score: s[2].score + 7 },
+          { selector: 'rb', score: s[3].score },
+          { selector: 'js', score: s[4].score },
         ])
       case 'innerspring':
-        includeSecondExample.current = true
+        includeRuby.current = true
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score },
-          { selector: 'second', score: s[1].score + 7 },
-          { selector: 'third', score: s[2].score },
-          { selector: 'fourth', score: s[3].score + 7 },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score },
+          { selector: 'ja', score: s[1].score + 7 },
+          { selector: 'py', score: s[2].score },
+          { selector: 'rb', score: s[3].score + 7 },
+          { selector: 'js', score: s[4].score },
         ])
       case 'hybrid':
-        includeSecondExample.current = true
+        includeRuby.current = true
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score },
-          { selector: 'second', score: s[1].score + 7 },
-          { selector: 'third', score: s[2].score },
-          { selector: 'fourth', score: s[3].score + 7 },
-          { selector: 'fifth', score: s[4].score + 7 },
+          { selector: 'cp', score: s[0].score },
+          { selector: 'ja', score: s[1].score + 7 },
+          { selector: 'py', score: s[2].score },
+          { selector: 'rb', score: s[3].score + 7 },
+          { selector: 'js', score: s[4].score + 7 },
         ])
       case 'unsure':
-        includeSecondExample.current = true
+        includeRuby.current = true
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score + 7 },
-          { selector: 'second', score: s[1].score },
-          { selector: 'third', score: s[2].score + 7 },
-          { selector: 'fourth', score: s[3].score },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score + 7 },
+          { selector: 'ja', score: s[1].score },
+          { selector: 'py', score: s[2].score + 7 },
+          { selector: 'rb', score: s[3].score },
+          { selector: 'js', score: s[4].score },
         ])
     }
     switch (singleAnswersSelected.current[3].selector) {
       case 'back':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score + 4 },
-          { selector: 'second', score: s[1].score + 4 },
-          { selector: 'third', score: s[2].score + 4 },
-          { selector: 'fourth', score: s[3].score + 4 },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score + 4 },
+          { selector: 'ja', score: s[1].score + 4 },
+          { selector: 'py', score: s[2].score + 4 },
+          { selector: 'rb', score: s[3].score + 4 },
+          { selector: 'js', score: s[4].score },
         ])
       case 'side':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score },
-          { selector: 'second', score: s[1].score + 4 },
-          { selector: 'third', score: s[2].score + 4 },
-          { selector: 'fourth', score: s[3].score + 4 },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score },
+          { selector: 'ja', score: s[1].score + 4 },
+          { selector: 'py', score: s[2].score + 4 },
+          { selector: 'rb', score: s[3].score + 4 },
+          { selector: 'js', score: s[4].score },
         ])
       case 'stomach':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score + 4 },
-          { selector: 'second', score: s[1].score + 4 },
-          { selector: 'third', score: s[2].score },
-          { selector: 'fourth', score: s[3].score + 4 },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score + 4 },
+          { selector: 'ja', score: s[1].score + 4 },
+          { selector: 'py', score: s[2].score },
+          { selector: 'rb', score: s[3].score + 4 },
+          { selector: 'js', score: s[4].score },
         ])
       case 'combo':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score },
-          { selector: 'second', score: s[1].score + 4 },
-          { selector: 'third', score: s[2].score + 4 },
-          { selector: 'fourth', score: s[3].score },
-          { selector: 'fifth', score: s[4].score },
+          { selector: 'cp', score: s[0].score },
+          { selector: 'ja', score: s[1].score + 4 },
+          { selector: 'py', score: s[2].score + 4 },
+          { selector: 'rb', score: s[3].score },
+          { selector: 'js', score: s[4].score },
         ])
     }
     switch (singleAnswersSelected.current[4].selector) {
       case 'yes':
         setDefaultScores((s) => [
-          { selector: 'first', score: s[0].score },
-          { selector: 'second', score: s[1].score },
-          { selector: 'third', score: s[2].score },
-          { selector: 'fourth', score: s[3].score },
-          { selector: 'fifth', score: s[4].score + 4 },
+          { selector: 'cp', score: s[0].score },
+          { selector: 'ja', score: s[1].score },
+          { selector: 'py', score: s[2].score },
+          { selector: 'rb', score: s[3].score },
+          { selector: 'js', score: s[4].score + 4 },
         ])
     }
     // `singleAnswersSelected.current[5]` has no effect on quiz scores
     if (
       singleAnswersSelected.current.length > 6 &&
-      singleAnswersSelected.current[6].selector === 'issuesChallengesNone'
+      singleAnswersSelected.current[6].selector === 'schoolSubjectsNone'
     ) {
       setDefaultScores((s) => [
-        { selector: 'first', score: s[0].score },
-        { selector: 'second', score: s[1].score + 3 },
-        { selector: 'third', score: s[2].score + 3 },
-        { selector: 'fourth', score: s[3].score },
-        { selector: 'fifth', score: s[4].score },
+        { selector: 'cp', score: s[0].score },
+        { selector: 'ja', score: s[1].score + 3 },
+        { selector: 'py', score: s[2].score + 3 },
+        { selector: 'rb', score: s[3].score },
+        { selector: 'js', score: s[4].score },
       ])
     }
     // The following line has no effect on quiz scores.
-    // `singleAnswersSelected.current[6].selector === 'followingApplyNone' || singleAnswersSelected.current[7].selector === 'followingApplyNone'`
+    // `singleAnswersSelected.current[6].selector === 'extracurricularsNone' || singleAnswersSelected.current[7].selector === 'extracurricularsNone'`
     // END Single Answers
 
     // Multiple Answers
-    if (whichIssuesChallengesSelected.firstIssue) {
+    if (whichSchoolSubjects.firstIssue) {
       setDefaultScores((s) => [
-        { selector: 'first', score: s[0].score + 3 },
-        { selector: 'second', score: s[1].score + 3 },
-        { selector: 'third', score: s[2].score },
-        { selector: 'fourth', score: s[3].score + 3 },
-        { selector: 'fifth', score: s[4].score },
+        { selector: 'cp', score: s[0].score + 3 },
+        { selector: 'ja', score: s[1].score + 3 },
+        { selector: 'py', score: s[2].score },
+        { selector: 'rb', score: s[3].score + 3 },
+        { selector: 'js', score: s[4].score },
       ])
     }
     if (
-      whichIssuesChallengesSelected.secondIssue ||
-      whichIssuesChallengesSelected.thirdIssue
+      whichSchoolSubjects.secondIssue ||
+      whichSchoolSubjects.thirdIssue
     ) {
-      includeThirdExample.current = true
+      addLisp.current = true
       setDefaultScores((s) => [
-        { selector: 'first', score: s[0].score },
-        { selector: 'second', score: s[1].score + 3 },
-        { selector: 'third', score: s[2].score + 3 },
-        { selector: 'fourth', score: s[3].score + 3 },
-        { selector: 'fifth', score: s[4].score },
+        { selector: 'cp', score: s[0].score },
+        { selector: 'ja', score: s[1].score + 3 },
+        { selector: 'py', score: s[2].score + 3 },
+        { selector: 'rb', score: s[3].score + 3 },
+        { selector: 'js', score: s[4].score },
       ])
     }
-    if (whichIssuesChallengesSelected.fourthIssue) {
+    if (whichSchoolSubjects.fourthIssue) {
       setDefaultScores((s) => [
-        { selector: 'first', score: s[0].score },
-        { selector: 'second', score: s[1].score + 3 },
-        { selector: 'third', score: s[2].score + 3 },
-        { selector: 'fourth', score: s[3].score + 3 },
-        { selector: 'fifth', score: s[4].score },
+        { selector: 'cp', score: s[0].score },
+        { selector: 'ja', score: s[1].score + 3 },
+        { selector: 'py', score: s[2].score + 3 },
+        { selector: 'rb', score: s[3].score + 3 },
+        { selector: 'js', score: s[4].score },
       ])
     }
-    if (whichIssuesChallengesSelected.fifthIssue) {
+    if (whichSchoolSubjects.fifthIssue) {
       setDefaultScores((s) => [
-        { selector: 'first', score: s[0].score },
-        { selector: 'second', score: s[1].score + 3 },
-        { selector: 'third', score: s[2].score },
-        { selector: 'fourth', score: s[3].score + 3 },
-        { selector: 'fifth', score: s[4].score },
+        { selector: 'cp', score: s[0].score },
+        { selector: 'ja', score: s[1].score + 3 },
+        { selector: 'py', score: s[2].score },
+        { selector: 'rb', score: s[3].score + 3 },
+        { selector: 'js', score: s[4].score },
       ])
     }
     if (
-      whichFollowingApplySelected.firstFollowing ||
-      whichFollowingApplySelected.secondFollowing ||
-      whichFollowingApplySelected.thirdFollowing ||
-      whichFollowingApplySelected.fourthFollowing
+      whichExtracurriculars.firstFollowing ||
+      whichExtracurriculars.secondFollowing ||
+      whichExtracurriculars.thirdFollowing ||
+      whichExtracurriculars.fourthFollowing
     ) {
-      includeThirdExample.current = true
+      addLisp.current = true
     }
-    if (whichFollowingApplySelected.fifthFollowing) {
-      includeThirdExample.current = true
+    if (whichExtracurriculars.fifthFollowing) {
+      addLisp.current = true
     }
   }
 
@@ -441,8 +441,8 @@ export default function Quiz() {
         <Questions
           currentQuestion={currentQuestion}
           progressBarWidth={progressBarWidth}
-          whichIssuesChallengesSelected={whichIssuesChallengesSelected}
-          whichFollowingApplySelected={whichFollowingApplySelected}
+          whichSchoolSubjects={whichSchoolSubjects}
+          whichExtracurriculars={whichExtracurriculars}
           handleProceedQuestions={handleProceedQuestions}
           handleSingleAns={handleSingleAns}
           handleMultipleAns={handleMultipleAns}
@@ -452,10 +452,10 @@ export default function Quiz() {
         <Results
           singleAnswersSelected={singleAnswersSelected.current}
           defaultScores={defaultScores}
-          includeFirstExample={includeFirstExample.current}
-          includeSecondExample={includeSecondExample.current}
-          includeThirdExample={includeThirdExample.current}
-          includeFourthExample={includeFourthExample.current}
+          includePython={includePython.current}
+          includeRuby={includeRuby.current}
+          addLisp={addLisp.current}
+          addRust={addRust.current}
           handleShowEmail={handleShowEmail}
           emailEntered={emailEntered}
           evan={<Evan />}

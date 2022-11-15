@@ -17,10 +17,10 @@ import {
 interface Props {
   singleAnswersSelected: any
   defaultScores: any
-  includeFirstExample: boolean
-  includeSecondExample: boolean
-  includeThirdExample: boolean
-  includeFourthExample: boolean
+  includePython: boolean
+  includeRuby: boolean
+  addLisp: boolean
+  addRust: boolean
   handleShowEmail: React.MouseEventHandler
   emailEntered: boolean
   evan: React.ReactElement
@@ -29,10 +29,10 @@ interface Props {
 const Results = ({
   singleAnswersSelected,
   defaultScores,
-  includeFirstExample,
-  includeSecondExample,
-  includeThirdExample,
-  includeFourthExample,
+  includePython,
+  includeRuby,
+  addLisp,
+  addRust,
   handleShowEmail,
   emailEntered,
   evan,
@@ -51,8 +51,8 @@ const Results = ({
   )
 
   const secondPick =
-    includeFirstExample || includeSecondExample ? (
-      includeFirstExample ? (
+    includePython || includeRuby ? (
+      includePython ? (
         <Result
           languagePick={2}
           thumbURL={resultsThumbURLs.venusLegend}
@@ -122,7 +122,7 @@ const Results = ({
           {firstPick}
         </div>
         {secondPick}
-        {includeThirdExample ? (
+        {addLisp ? (
           <Result
             thumbURL={resultsThumbURLs.adjustableBase}
             recommendTextPrimary="I'd also recommend adding..."
@@ -133,7 +133,7 @@ const Results = ({
             url={resultsFour.adjustableBase}
           />
         ) : null}
-        {includeFourthExample ? (
+        {addRust ? (
           <Result
             thumbURL={resultsThumbURLs.splitKingAdjustableSet}
             recommendTextPrimary="I'd also recommend adding..."

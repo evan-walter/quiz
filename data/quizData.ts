@@ -140,13 +140,13 @@ export const questions: any[] = [
       createElement(
         'p',
         { className: 'font-bold' },
-        createElement('span', null, 'My '),
+        createElement('span', null, 'I like(d) the following '),
         createElement(
           'span',
           { className: 'text-blue-500' },
-          'favorite subject or subjects in school'
+          'subject(s) in school'
         ),
-        createElement('span', null, ' is, was, or were...')
+        createElement('span', null, ' the most.')
       ),
       createElement('i', null, '(Select all that apply)')
     ),
@@ -196,53 +196,59 @@ export const questions: any[] = [
     ],
   },
   {
-    questionSelector: 'schoolSubjectsSecond',
+    questionSelector: 'exextracurricularstracu',
     questionText: createElement(
       'p',
       { className: 'text-2xl font-bold' },
-      createElement('span', null, 'My '),
+      createElement('span', null, 'I like(d) the following '),
       createElement(
         'span',
         { className: 'text-blue-500' },
-        'second-favorite subject or subjects in school'
+        'extracurricular(s) in school'
       ),
-      createElement('span', null, ' is, was, or were...'),
+      createElement('span', null, ' the most.'),
       createElement('i', null, '(Select all that apply)')
     ),
     answerOptions: [
       {
-        selector: 'english',
-        answerText: 'English',
+        selector: 'debate',
+        answerText: 'Debate Team',
         imgSrc: '',
         singleAns: false,
       },
       {
-        selector: 'history',
-        answerText: 'History',
+        selector: 'chess',
+        answerText: 'Chess Team',
         imgSrc: '',
         singleAns: false,
       },
       {
-        selector: 'math',
-        answerText: 'Math',
+        selector: 'band',
+        answerText: 'Band or Orchestra',
         imgSrc: '',
         singleAns: false,
       },
       {
-        selector: 'science',
-        answerText: 'Science',
+        selector: 'art',
+        answerText: 'Art and/or Photography',
         imgSrc: '',
         singleAns: false,
       },
       {
-        selector: 'recess',
-        answerText: 'Recess',
+        selector: 'act',
+        answerText: 'Theater, Choir, and/or Dance',
+        imgSrc: '',
+        singleAns: false,
+      },
+      {
+        selector: 'gym',
+        answerText: 'Gym',
         imgSrc: '',
         singleAns: false,
       },
       {
         selector: 'none',
-        answerText: "None—I strongly disliked school or didn't go to school.",
+        answerText: "None—I do not like these types of extracurriculars or didn't go to school.",
         imgSrc: '',
         singleAns: false,
       },

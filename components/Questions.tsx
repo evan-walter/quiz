@@ -6,8 +6,8 @@ import BtnArrow from './Btns/BtnArrow'
 interface Props {
   currentQuestion: number
   progressBarWidth: number
-  whichIssuesChallengesSelected: any
-  whichFollowingApplySelected: any
+  whichSchoolSubjects: any
+  whichExtracurriculars: any
   handleProceedQuestions: React.MouseEventHandler
   handleSingleAns: React.MouseEventHandler
   handleMultipleAns: React.MouseEventHandler
@@ -17,8 +17,8 @@ interface Props {
 export default function Questions({
   currentQuestion,
   progressBarWidth,
-  whichIssuesChallengesSelected,
-  whichFollowingApplySelected,
+  whichSchoolSubjects,
+  whichExtracurriculars,
   handleProceedQuestions,
   handleSingleAns,
   handleMultipleAns,
@@ -29,23 +29,23 @@ export default function Questions({
   // Show Next Btn
   const handleShowNextBtn = () => {
     if (
-      questions[currentQuestion - 1].questionSelector === 'issuesChallenges'
+      questions[currentQuestion - 1].questionSelector === 'schoolSubjects'
     ) {
-      whichIssuesChallengesSelected.firstIssue === true ||
-      whichIssuesChallengesSelected.secondIssue === true ||
-      whichIssuesChallengesSelected.thirdIssue === true ||
-      whichIssuesChallengesSelected.fourthIssue === true ||
-      whichIssuesChallengesSelected.fifthIssue === true
+      whichSchoolSubjects.firstIssue === true ||
+      whichSchoolSubjects.secondIssue === true ||
+      whichSchoolSubjects.thirdIssue === true ||
+      whichSchoolSubjects.fourthIssue === true ||
+      whichSchoolSubjects.fifthIssue === true
         ? setShowNextBtn(true)
         : setShowNextBtn(false)
     }
 
-    if (questions[currentQuestion - 1].questionSelector === 'followingApply') {
-      whichFollowingApplySelected.firstFollowing === true ||
-      whichFollowingApplySelected.secondFollowing === true ||
-      whichFollowingApplySelected.thirdFollowing === true ||
-      whichFollowingApplySelected.fourthFollowing === true ||
-      whichFollowingApplySelected.fifthFollowing === true
+    if (questions[currentQuestion - 1].questionSelector === 'extracurriculars') {
+      whichExtracurriculars.firstFollowing === true ||
+      whichExtracurriculars.secondFollowing === true ||
+      whichExtracurriculars.thirdFollowing === true ||
+      whichExtracurriculars.fourthFollowing === true ||
+      whichExtracurriculars.fifthFollowing === true
         ? setShowNextBtn(true)
         : setShowNextBtn(false)
     }
@@ -54,8 +54,8 @@ export default function Questions({
   useEffect(() => {
     handleShowNextBtn()
   }, [
-    whichIssuesChallengesSelected,
-    whichFollowingApplySelected,
+    whichSchoolSubjects,
+    whichExtracurriculars,
     currentQuestion,
   ])
   // END Show Next Btn
@@ -64,8 +64,8 @@ export default function Questions({
     (answerOption: any, i: number) => (
       <Fragment key={i}>
         {showNextBtn &&
-        (answerOption.selector === 'issuesChallengesNone' ||
-          answerOption.selector === 'followingApplyNone') ? (
+        (answerOption.selector === 'schoolSubjectsNone' ||
+          answerOption.selector === 'extracurricularsNone') ? (
           <div className='xsQuiz:my-0 xsQuiz:h-[272px] mt-16 mb-8 flex w-52 items-center justify-center'>
             <BtnArrow
               handleClick={handleProceedQuestions}
@@ -80,8 +80,8 @@ export default function Questions({
           <div className='flex w-52 flex-col items-center p-4'>
             <div
               className={`rounded-xl border-2 p-2 ${
-                whichIssuesChallengesSelected[answerOption.selector] ||
-                whichFollowingApplySelected[answerOption.selector]
+                whichSchoolSubjects[answerOption.selector] ||
+                whichExtracurriculars[answerOption.selector]
                   ? 'border-blue-500'
                   : 'border-gray-100'
               }`}
@@ -139,9 +139,9 @@ export default function Questions({
           <div
             className={`mx-auto my-8 flex flex-wrap justify-center ${
               questions[currentQuestion - 1].questionSelector ==
-                'issuesChallenges' ||
+                'schoolSubjects' ||
               questions[currentQuestion - 1].questionSelector ==
-                'followingApply'
+                'extracurriculars'
                 ? 'max-w-3xl'
                 : 'max-w-4xl'
             }`}
